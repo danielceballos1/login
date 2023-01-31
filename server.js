@@ -11,7 +11,7 @@ const mainRoute = require('./routes/main')
 
 require('dotenv').config({path:`./config/.env`})
 
-connectDB()
+// connectDB()
 
 app.set('view engine', 'ejs')
 
@@ -44,6 +44,12 @@ app.use(flash());
 
 app.use('/', mainRoute)
 
-app.listen(process.env.PORT, ()=>{
-    console.log('we are listening')
+// app.listen(process.env.PORT, ()=>{
+//     console.log('we are listening')
+// })
+
+connectDB().then(() => {
+  app.listen(process.env.PORT, () => {
+      console.log("listening for requests");
+  })
 })
